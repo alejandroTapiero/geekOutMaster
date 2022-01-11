@@ -19,13 +19,13 @@ public class GUIGridBagLayout extends JFrame {
 
 
     private Header headerProject;
-    private JLabel dado1, dado2;
+    private JLabel dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
     private JButton lanzar, ayuda, salir;
     private JPanel panelDados;
     private ImageIcon imageDado;
     private JTextArea mensajeSalida, resultadosDados;
     private Escucha escucha;
-    //private ModelCraps modelCraps;
+    private ModelGOM modelGOM;
     private int flag;
 
     public GUIGridBagLayout(){
@@ -78,12 +78,29 @@ public class GUIGridBagLayout extends JFrame {
         imageDado = new ImageIcon(getClass().getResource("/resources/dado.png"));
         dado1 = new JLabel(imageDado);
         dado2 = new JLabel(imageDado);
+        dado3 = new JLabel(imageDado);
+        dado4 = new JLabel(imageDado);
+        dado5 = new JLabel(imageDado);
+        dado6 = new JLabel(imageDado);
+        dado7 = new JLabel(imageDado);
+        dado8 = new JLabel(imageDado);
+        dado9 = new JLabel(imageDado);
+        dado10 = new JLabel(imageDado);
 
         panelDados = new JPanel();
         panelDados.setPreferredSize(new Dimension(300, 180));
         panelDados.setBorder(BorderFactory.createTitledBorder("Tus Dados "));
         panelDados.add(dado1);
         panelDados.add(dado2);
+        panelDados.add(dado3);
+        panelDados.add(dado4);
+        panelDados.add(dado5);
+        panelDados.add(dado6);
+        panelDados.add(dado7);
+        panelDados.add(dado8);
+        panelDados.add(dado9);
+        panelDados.add(dado10);
+
         constraints.gridx=0;
         constraints.gridy=2;
         constraints.gridwidth=1;
@@ -137,16 +154,16 @@ public class GUIGridBagLayout extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource()==lanzar){
-                //modelCraps.calcularTiro();
-                int[] caras = modelCraps.getCaras();
+                modelGOM.calcularTiro();
+                int[] caras = modelGOM.getCaras();
                 imageDado = new ImageIcon(getClass().getResource("/resources/"+caras[0]+".png"));
                 dado1.setIcon(imageDado);
                 imageDado = new ImageIcon(getClass().getResource("/resources/"+caras[1]+".png"));
                 dado2.setIcon(imageDado);
-                //modelCraps.determinarJuego();
-                resultadosDados.setText(modelCraps.getEstadotoString()[0]);
+                modelGOM.determinarJuego();
+                resultadosDados.setText(modelGOM.getEstadotoString()[0]);
                 mensajeSalida.setRows(4);
-                mensajeSalida.setText(modelCraps.getEstadotoString()[1]);
+                mensajeSalida.setText(modelGOM.getEstadotoString()[1]);
             }
             else{
                 if(e.getSource()==ayuda){
